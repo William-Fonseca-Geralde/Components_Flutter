@@ -1,6 +1,6 @@
+import 'package:components_flutter/src/views/widgets/drawer_navigation_widget.dart';
+import 'package:components_flutter/src/views/widgets/end_drawer_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:components_flutter/src/components_tips.dart';
 import 'package:components_flutter/src/providers/theme_notifier.dart';
 import 'package:components_flutter/src/views/components_pages/actions_page.dart';
 import 'package:components_flutter/src/views/components_pages/communication_page.dart';
@@ -48,115 +48,15 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     return Scaffold(
       key: scaffoldKey,
-      endDrawer: Drawer(
-        width: MediaQuery.sizeOf(context).width * 0.75,
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primaryContainer,
-              ),
-              child: Text(
-                selectedComponent != '' &&
-                        componentTips.containsKey(selectedComponent)
-                    ? selectedComponent
-                    : "Componente não selecionado",
-                style: Theme.of(context).textTheme.headlineLarge,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                selectedComponent != '' &&
-                        componentTips.containsKey(selectedComponent)
-                    ? componentTips[selectedComponent]['subtitle']
-                    : "Sem Informações",
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ),
-            selectedComponent != '' &&
-                    componentTips.containsKey(selectedComponent)
-                ? Column(
-                  spacing: 25,
-                  children: [
-                    Text(
-                      "Como é Implementado",
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    for (var entry
-                        in componentTips[selectedComponent]["code"]?.entries ??
-                            [])
-                      Column(
-                        spacing: 15,
-                        children: [
-                          Text(
-                            entry.key,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              entry.value["widget"](),
-                              SizedBox(
-                                width: 250,
-                                child: Card.outlined(
-                                  borderOnForeground: true,
-                                  child: Padding(
-                                    padding: EdgeInsets.all(10),
-                                    child: Row(
-                                      children: [
-                                        Column(
-                                          children: [
-                                            SelectableText(
-                                              entry.value["codigo"],
-                                              style: TextStyle(
-                                                fontFamily: 'monospace',
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Column(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            IconButton.filledTonal(
-                                              onPressed: () {
-                                                Clipboard.setData(
-                                                  ClipboardData(
-                                                    text: entry.value["codigo"],
-                                                  ),
-                                                );
-                                                ScaffoldMessenger.of(
-                                                  context,
-                                                ).showSnackBar(
-                                                  SnackBar(
-
-                                                    content: Text(
-                                                      "Código copiado!",
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                              icon: Icon(Icons.copy),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                  ],
-                )
-                : Text("Sem código"),
-          ],
-        ),
+      drawer: DrawerNavigationWidget(
+        currentPageIdx: currentPageIdx,
+        onPageChanged: (value) {
+          setState(() {
+            currentPageIdx = value;
+          });
+        },
       ),
+      endDrawer: EndDrawerWidget(selectedComponent: selectedComponent),
       appBar: AppBar(
         title: const Text("Material App 3"),
         backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
@@ -207,69 +107,6 @@ class _HomePageState extends ConsumerState<HomePage> {
             icon: Icon(themeMode ? Icons.light_mode : Icons.dark_mode),
           ),
         ],
-      ),
-      drawer: Drawer(
-        width: MediaQuery.sizeOf(context).width * 0.4,
-        child: NavigationDrawer(
-          onDestinationSelected: (value) {
-            setState(() {
-              currentPageIdx = value;
-            });
-          },
-          selectedIndex: currentPageIdx,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
-              child: Text(
-                "Componentes",
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
-            ),
-            NavigationDrawerDestination(
-              icon: Icon(Icons.ads_click_outlined),
-              label: Text('Ações'),
-              selectedIcon: Icon(Icons.ads_click),
-            ),
-            NavigationDrawerDestination(
-              icon: Icon(Icons.chat_outlined),
-              label: Text("Comunicação"),
-              selectedIcon: Icon(Icons.chat),
-            ),
-            NavigationDrawerDestination(
-              icon: Icon(Icons.navigation_outlined),
-              label: Text("Navegação"),
-              selectedIcon: Icon(Icons.navigation),
-            ),
-            NavigationDrawerDestination(
-              icon: Icon(Icons.radio_button_off),
-              label: Text("Seleção"),
-              selectedIcon: Icon(Icons.radio_button_checked),
-            ),
-            NavigationDrawerDestination(
-              icon: Icon(Icons.text_fields_outlined),
-              label: Text("Entradas de Texto"),
-              selectedIcon: Icon(Icons.text_fields),
-            ),
-            const Divider(indent: 18, endIndent: 18),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
-              child: Text(
-                "Cores",
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
-            ),
-            NavigationDrawerDestination(
-              icon: Icon(Icons.light_mode_outlined),
-              label: Text('Claro'),
-              selectedIcon: Icon(Icons.light_mode),
-            ),
-            NavigationDrawerDestination(
-              icon: Icon(Icons.dark_mode_outlined),
-              label: Text("Escuro"),
-              selectedIcon: Icon(Icons.dark_mode),
-            ),
-          ],
-        ),
       ),
       body: Column(
         children: [
