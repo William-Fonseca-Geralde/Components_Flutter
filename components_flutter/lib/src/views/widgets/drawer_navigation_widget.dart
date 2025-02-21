@@ -19,7 +19,6 @@ class _DrawerNavigationWidgetState extends State<DrawerNavigationWidget> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: MediaQuery.sizeOf(context).width * 0.4,
       child: NavigationDrawer(
         onDestinationSelected: widget.onPageChanged,
         selectedIndex: widget.currentPageIdx,

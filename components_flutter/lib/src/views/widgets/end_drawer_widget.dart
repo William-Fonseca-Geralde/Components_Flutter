@@ -9,114 +9,131 @@ class EndDrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-        width: MediaQuery.sizeOf(context).width * 0.75,
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primaryContainer,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double drawerWidth = constraints.maxWidth * 0.65;
+        if (constraints.maxWidth < 600) {
+          drawerWidth = constraints.maxWidth * 0.75; // Mobile
+        } else if (constraints.maxWidth > 1200) {
+          drawerWidth = constraints.maxWidth * 0.55; // Desktop
+        }
+
+        return Drawer(
+          width: drawerWidth,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                ),
+                child: Text(
+                  selectedComponent != '' &&
+                          componentTips.containsKey(selectedComponent)
+                      ? selectedComponent
+                      : "Componente não selecionado",
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
               ),
-              child: Text(
-                selectedComponent != '' &&
-                        componentTips.containsKey(selectedComponent)
-                    ? selectedComponent
-                    : "Componente não selecionado",
-                style: Theme.of(context).textTheme.headlineLarge,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                selectedComponent != '' &&
-                        componentTips.containsKey(selectedComponent)
-                    ? componentTips[selectedComponent]['subtitle']
-                    : "Sem Informações",
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-            ),
-            selectedComponent != '' &&
-                    componentTips.containsKey(selectedComponent)
-                ? Column(
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
                   spacing: 25,
                   children: [
                     Text(
-                      "Como é Implementado",
-                      style: Theme.of(context).textTheme.titleLarge,
+                      selectedComponent != '' &&
+                              componentTips.containsKey(selectedComponent)
+                          ? componentTips[selectedComponent]['subtitle']
+                          : "Sem Informações",
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
-                    for (var entry
-                        in componentTips[selectedComponent]["code"]?.entries ??
-                            [])
-                      Column(
-                        spacing: 15,
-                        children: [
-                          Text(
-                            entry.key,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              entry.value["widget"](),
-                              SizedBox(
-                                width: 250,
-                                child: Card.outlined(
-                                  borderOnForeground: true,
-                                  child: Padding(
-                                    padding: EdgeInsets.all(10),
-                                    child: Row(
-                                      children: [
-                                        Column(
-                                          children: [
-                                            SelectableText(
-                                              entry.value["codigo"],
-                                              style: TextStyle(
-                                                fontFamily: 'monospace',
-                                              ),
+                    selectedComponent != '' &&
+                            componentTips.containsKey(selectedComponent)
+                        ? Column(
+                          spacing: 50,
+                          children: [
+                            Text(
+                              "Como é Implementado",
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                            IntrinsicHeight(
+                              child: Wrap(
+                                runSpacing: 15,
+                                alignment: WrapAlignment.center,
+                                spacing: 15,
+                                children: [
+                                  for (var entry
+                                      in componentTips[selectedComponent]["code"]
+                                              ?.entries ??
+                                          [])
+                                    ConstrainedBox(
+                                      constraints: BoxConstraints(
+                                        maxWidth:
+                                            constraints.maxWidth < 600
+                                                ? 300
+                                                : 400,
+                                      ),
+                                      child: Column(
+                                        spacing: 15,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            entry.key,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
                                             ),
-                                          ],
-                                        ),
-                                        Column(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            IconButton.filledTonal(
-                                              onPressed: () {
-                                                Clipboard.setData(
-                                                  ClipboardData(
-                                                    text: entry.value["codigo"],
-                                                  ),
-                                                );
-                                                ScaffoldMessenger.of(
-                                                  context,
-                                                ).showSnackBar(
-                                                  SnackBar(
-
-                                                    content: Text(
-                                                      "Código copiado!",
+                                          ),
+                                          Card.filled(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(16),
+                                              child: Column(
+                                                spacing: 30,
+                                                children: [
+                                                  SizedBox(
+                                                    width: 250,
+                                                    child: Card.outlined(
+                                                      borderOnForeground: true,
+                                                      child: Padding(
+                                                        padding: EdgeInsets.all(
+                                                          10,
+                                                        ),
+                                                        child: Row(
+                                                          children: [
+                                                            SelectableText(
+                                                              entry
+                                                                  .value["codigo"],
+                                                              style: TextStyle(
+                                                                fontFamily:
+                                                                    'monospace',
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
                                                     ),
                                                   ),
-                                                );
-                                              },
-                                              icon: Icon(Icons.copy),
+                                                  entry.value["widget"](),
+                                                ],
+                                              ),
                                             ),
-                                          ],
-                                        ),
-                                      ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        )
+                        : Text("Sem código"),
                   ],
-                )
-                : Text("Sem código"),
-          ],
-        ),
-      );
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }
