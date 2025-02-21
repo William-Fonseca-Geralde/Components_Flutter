@@ -23,91 +23,103 @@ class ActionsPage extends StatelessWidget {
         padding: EdgeInsets.all(25),
         child: LayoutBuilder(
           builder: (context, constraints) {
-            double maxWidth = constraints.maxWidth;
-
             return Center(
-              child: Wrap(
-                runSpacing: 45,
+              child: Column(
                 spacing: 30,
-                alignment: WrapAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Wrap(
+                    runSpacing: 30,
+                    alignment: WrapAlignment.center,
                     spacing: 30,
                     children: [
-                      Text(
-                        "Botões Comuns",
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      Card.outlined(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Row(
-                            spacing: 10,
-                            children: [
-                              for (var buttonList in [
-                                buttonTypes,
-                                iconButtonTypes,
-                                disabledButtons,
-                                iconButtons,
-                              ])
-                                IntrinsicWidth(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children:
-                                        buttonList
-                                            .map(
-                                              (e) => Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                  vertical: 10,
-                                                ),
-                                                child: e,
-                                              ),
-                                            )
-                                            .toList(),
-                                  ),
-                                ),
-                            ],
+                      Column(
+                        spacing: 10,
+                        children: [
+                          Text(
+                            "Botões Comuns",
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
-                        ),
-                      ),
-                      Text(
-                        "Botões Comuns",
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      Card.outlined(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Row(
-                            spacing: 10,
-                            children: [
-                              for (var buttonList in [
-                                buttonTypes,
-                                iconButtonTypes,
-                                disabledButtons,
-                                iconButtons,
-                              ])
-                                IntrinsicWidth(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children:
-                                        buttonList
-                                            .map(
-                                              (e) => Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                  vertical: 10,
-                                                ),
-                                                child: e,
-                                              ),
-                                            )
-                                            .toList(),
-                                  ),
+                          IntrinsicWidth(
+                            child: Card.outlined(
+                              child: Padding(
+                                padding: const EdgeInsets.all(16),
+                                child: Row(
+                                  spacing: 10,
+                                  children: [
+                                    for (var buttonList in [
+                                      buttonTypes,
+                                      iconButtonTypes,
+                                      disabledButtons,
+                                      iconButtons,
+                                    ])
+                                      IntrinsicWidth(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
+                                          children:
+                                              buttonList
+                                                  .map(
+                                                    (e) => Padding(
+                                                      padding: EdgeInsets.symmetric(
+                                                        vertical: 10,
+                                                      ),
+                                                      child: e,
+                                                    ),
+                                                  )
+                                                  .toList(),
+                                        ),
+                                      ),
+                                  ],
                                 ),
-                            ],
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
+                      ),
+                      Column(
+                        spacing: 10,
+                        children: [
+                          Text(
+                            "Botões Comuns",
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          IntrinsicWidth(
+                            child: Card.outlined(
+                              child: Padding(
+                                padding: const EdgeInsets.all(16),
+                                child: Row(
+                                  spacing: 10,
+                                  children: [
+                                    for (var buttonList in [
+                                      buttonTypes,
+                                      iconButtonTypes,
+                                      disabledButtons,
+                                      iconButtons,
+                                    ])
+                                      IntrinsicWidth(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
+                                          children:
+                                              buttonList
+                                                  .map(
+                                                    (e) => Padding(
+                                                      padding: EdgeInsets.symmetric(
+                                                        vertical: 10,
+                                                      ),
+                                                      child: e,
+                                                    ),
+                                                  )
+                                                  .toList(),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
