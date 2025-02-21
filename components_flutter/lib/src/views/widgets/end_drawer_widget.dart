@@ -1,4 +1,4 @@
-import 'package:components_flutter/src/components_tips.dart';
+import 'package:components_flutter/src/views/widgets/components_types/components_tips.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -70,13 +70,13 @@ class EndDrawerWidget extends StatelessWidget {
                                       constraints: BoxConstraints(
                                         maxWidth:
                                             constraints.maxWidth < 600
-                                                ? 300
-                                                : 400,
+                                                ? 350
+                                                : 450,
                                       ),
                                       child: Column(
                                         spacing: 15,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             entry.key,
@@ -86,12 +86,12 @@ class EndDrawerWidget extends StatelessWidget {
                                           ),
                                           Card.filled(
                                             child: Padding(
-                                              padding: const EdgeInsets.all(16),
+                                              padding: EdgeInsets.all(16),
                                               child: Column(
                                                 spacing: 30,
                                                 children: [
                                                   SizedBox(
-                                                    width: 250,
+                                                    width: 275,
                                                     child: Card.outlined(
                                                       borderOnForeground: true,
                                                       child: Padding(
