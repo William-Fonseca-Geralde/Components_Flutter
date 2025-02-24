@@ -1,6 +1,5 @@
 import 'package:components_flutter/src/views/widgets/components_types/components_tips.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class EndDrawerWidget extends StatelessWidget {
   const EndDrawerWidget({super.key, required this.selectedComponent});
@@ -9,6 +8,8 @@ class EndDrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final buttonsComponents = componentTips["CommonButtons"];
+
     return LayoutBuilder(
       builder: (context, constraints) {
         double drawerWidth = constraints.maxWidth * 0.65;
@@ -29,7 +30,7 @@ class EndDrawerWidget extends StatelessWidget {
                 ),
                 child: Text(
                   selectedComponent != '' &&
-                          componentTips.containsKey(selectedComponent)
+                          buttonsComponents.containsKey(selectedComponent)
                       ? selectedComponent
                       : "Componente não selecionado",
                   style: Theme.of(context).textTheme.headlineLarge,
@@ -42,13 +43,13 @@ class EndDrawerWidget extends StatelessWidget {
                   children: [
                     Text(
                       selectedComponent != '' &&
-                              componentTips.containsKey(selectedComponent)
-                          ? componentTips[selectedComponent]['subtitle']
+                              buttonsComponents.containsKey(selectedComponent)
+                          ? buttonsComponents[selectedComponent]['subtitle']
                           : "Sem Informações",
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     selectedComponent != '' &&
-                            componentTips.containsKey(selectedComponent)
+                            buttonsComponents.containsKey(selectedComponent)
                         ? Column(
                           spacing: 50,
                           children: [
@@ -63,7 +64,7 @@ class EndDrawerWidget extends StatelessWidget {
                                 spacing: 15,
                                 children: [
                                   for (var entry
-                                      in componentTips[selectedComponent]["code"]
+                                      in buttonsComponents[selectedComponent]["code"]
                                               ?.entries ??
                                           [])
                                     ConstrainedBox(
@@ -73,52 +74,76 @@ class EndDrawerWidget extends StatelessWidget {
                                                 ? 350
                                                 : 450,
                                       ),
-                                      child: Column(
-                                        spacing: 15,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            entry.key,
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
+                                      child: IntrinsicHeight(
+                                        child: Column(
+                                          spacing: 10,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              entry.key,
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18
+                                              ),
                                             ),
-                                          ),
-                                          Card.filled(
-                                            child: Padding(
-                                              padding: EdgeInsets.all(16),
-                                              child: Column(
-                                                spacing: 30,
-                                                children: [
-                                                  SizedBox(
-                                                    width: 275,
-                                                    child: Card.outlined(
-                                                      borderOnForeground: true,
-                                                      child: Padding(
-                                                        padding: EdgeInsets.all(
-                                                          10,
-                                                        ),
-                                                        child: Row(
+                                            Expanded(
+                                              child: Card.filled(
+                                                child: SizedBox(
+                                                  width: 300,
+                                                  height: 275,
+                                                  child: Padding(
+                                                    padding: EdgeInsets.all(16),
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      spacing: 30,
+                                                      children: [
+                                                        Row(
                                                           children: [
-                                                            SelectableText(
-                                                              entry
-                                                                  .value["codigo"],
-                                                              style: TextStyle(
-                                                                fontFamily:
-                                                                    'monospace',
+                                                            Expanded(
+                                                              child: Card.outlined(
+                                                                borderOnForeground:
+                                                                    true,
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets.all(
+                                                                        10,
+                                                                      ),
+                                                                  child: SelectableText(
+                                                                    entry
+                                                                        .value["codigo"],
+                                                                    style: TextStyle(
+                                                                      fontFamily:
+                                                                          'monospace',
+                                                                    ),
+                                                                  ),
+                                                                ),
                                                               ),
                                                             ),
                                                           ],
                                                         ),
-                                                      ),
+                                                        Row(
+                                                          children: [
+                                                            Expanded(
+                                                              child:
+                                                                  entry
+                                                                      .value["widget"](),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
-                                                  entry.value["widget"](),
-                                                ],
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                            SizedBox(height: 30),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                 ],
