@@ -2,11 +2,11 @@ import 'package:components_flutter/src/views/widgets/drawer_navigation_widget.da
 import 'package:components_flutter/src/views/widgets/end_drawers/end_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:components_flutter/src/providers/theme_notifier.dart';
-import 'package:components_flutter/src/views/components_pages/actions_page.dart';
-import 'package:components_flutter/src/views/components_pages/communication_page.dart';
-import 'package:components_flutter/src/views/components_pages/navigation_page.dart';
-import 'package:components_flutter/src/views/components_pages/selection_page.dart';
-import 'package:components_flutter/src/views/components_pages/text_inputs_page.dart';
+import 'package:components_flutter/src/views/components_pages/actions/actions_page.dart';
+import 'package:components_flutter/src/views/components_pages/communication/communication_page.dart';
+import 'package:components_flutter/src/views/components_pages/navigation/navigation_page.dart';
+import 'package:components_flutter/src/views/components_pages/selection/selection_page.dart';
+import 'package:components_flutter/src/views/components_pages/text_inputs/text_inputs_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomePage extends ConsumerStatefulWidget {
