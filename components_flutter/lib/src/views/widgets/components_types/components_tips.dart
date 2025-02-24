@@ -259,15 +259,36 @@ TextButton(
         },
       },
     },
-    "FloatingButtons": {},
-    "IconButtons": {},
-    "SegmentedButtons": {},
+    "FloatingButtons": {
+      "SmallFAB": {},
+      "FAB": {},
+      "LargeFAB": {},
+      "ExtendedFAB": {}
+    },
+    "IconButtons": {
+      "IconButton": {},
+      "IconFilledButton": {},
+      "IconFilledTonalButton": {},
+      "IconOutlinedButton": {},
+    },
+    "SegmentedButtons": {
+      "SingleSelected": {},
+      "MultiSelected": {},
+    },
   },
   "Communication": {
-    "Badges": {},
-    "ProgressIndicators": {},
+    "Badges": {
+      "Small&Large": {}
+    },
+    "ProgressIndicators": {
+      "Linear": {},
+      "Circular": {}
+    },
     "SnackBar": {},
-    "ToolTips": {},
+    "ToolTips": {
+      "Plain": {},
+      "Rich": {}
+    },
   },
   "Contaiment": {
     "BottomSheet": {},
@@ -276,5 +297,27 @@ TextButton(
     "Dialogs": {},
     "Divider": {},
     "Lists": {}
+  },
+  "Navigation": {
+    "BottomAppBar": {},
+    "NavigationBar": {},
+    "NavigationDrawer": {},
+    "NavigationRail": {},
+    "Search": {},
+    "Tabs": {},
+    "TopAppBar": {}
+  },
+  "Selection": {
+    "Checkbox": {},
+    "Chips": {},
+    "DatePicker": {},
+    "Menus": {},
+    "RadioButton": {},
+    "Sliders": {},
+    "Switch": {},
+    "TimePicker": {},
+  },
+  "TextInputs": {
+    "TextField": {}
   }
 };
