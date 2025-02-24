@@ -8,7 +8,7 @@ class EndDrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final buttonsComponents = componentTips["CommonButtons"];
+    final buttonsComponents = componentTips["Actions"]["CommonButtons"];
 
     return LayoutBuilder(
       builder: (context, constraints) {

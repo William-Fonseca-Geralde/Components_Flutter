@@ -1,5 +1,5 @@
 import 'package:components_flutter/src/views/widgets/drawer_navigation_widget.dart';
-import 'package:components_flutter/src/views/widgets/end_drawer_widget.dart';
+import 'package:components_flutter/src/views/widgets/end_drawers/end_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:components_flutter/src/providers/theme_notifier.dart';
 import 'package:components_flutter/src/views/components_pages/actions_page.dart';
