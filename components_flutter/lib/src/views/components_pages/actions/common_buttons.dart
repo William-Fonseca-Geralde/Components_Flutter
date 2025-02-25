@@ -11,8 +11,8 @@ class CommonButtons extends StatelessWidget {
     return Column(
       spacing: 10,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        Wrap(
+          alignment: WrapAlignment.center,
           spacing: 25,
           children: [
             Text(

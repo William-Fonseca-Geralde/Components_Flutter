@@ -18,6 +18,7 @@ class ActionsPage extends StatelessWidget {
               child: Wrap(
                 runSpacing: 30,
                 alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 spacing: 30,
                 children: [
                   CommonButtons(onButtonPressed: onButtonPressed),
