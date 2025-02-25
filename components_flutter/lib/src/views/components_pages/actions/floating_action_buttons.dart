@@ -1,11 +1,16 @@
 import 'package:components_flutter/src/views/components_pages/actions/buttons_types.dart';
 import 'package:flutter/material.dart';
 
-class CommonButtons extends StatelessWidget {
-  const CommonButtons({super.key, required this.onButtonPressed});
+class FloatingActionButtons extends StatefulWidget {
+  const FloatingActionButtons({super.key, required this.onButtonPressed});
 
   final Function(String) onButtonPressed;
 
+  @override
+  State<FloatingActionButtons> createState() => _FloatingActionButtonsState();
+}
+
+class _FloatingActionButtonsState extends State<FloatingActionButtons> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,7 +21,7 @@ class CommonButtons extends StatelessWidget {
           spacing: 25,
           children: [
             Text(
-              "Botões Comuns",
+              "Botões de Ação Flutuante",
               style: Theme.of(context).textTheme.titleLarge,
             ),
             IconButton.outlined(
@@ -24,7 +29,7 @@ class CommonButtons extends StatelessWidget {
               style: ButtonStyle(
                 minimumSize: WidgetStatePropertyAll(Size(15, 15)),
               ),
-              onPressed: () => onButtonPressed("Botões Comuns"),
+              onPressed: () => widget.onButtonPressed("Botões de Ação Flutuante"),
               icon: Icon(Icons.question_mark),
             ),
           ],
@@ -36,25 +41,19 @@ class CommonButtons extends StatelessWidget {
               child: Row(
                 spacing: 10,
                 children: [
-                  for (var buttonList in [
-                    buttonTypes,
-                    iconButtonTypes,
-                    disabledButtons,
-                  ])
+                  for (var fab in fabs) ...[
                     IntrinsicWidth(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children:
-                            buttonList
-                                .map(
-                                  (e) => Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 10),
-                                    child: e,
-                                  ),
-                                )
-                                .toList(),
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 10),
+                            child: fab,
+                          ),
+                        ],
                       ),
                     ),
+                  ],
                 ],
               ),
             ),

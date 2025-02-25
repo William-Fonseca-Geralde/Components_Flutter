@@ -1,13 +1,5 @@
 import 'package:flutter/material.dart';
 
-final List<String> buttonNames = [
-  "ElevatedButton",
-  "FilledButton",
-  "FilledTonalButton",
-  "OutlinedButton",
-  "TextButton",
-]; 
-
 final List<Widget> buttonTypes = [
   ElevatedButton(onPressed: () {}, child: Text("Elevated")),
   FilledButton(onPressed: () {}, child: Text("Filled")),
@@ -50,4 +42,15 @@ final List<Widget> disabledButtons = [
   FilledButton.tonal(onPressed: null, child: Text("Filled Tonal")),
   OutlinedButton(onPressed: null, child: Text("Outlined")),
   TextButton(onPressed: null, child: Text("Text")),
+];
+
+final List<Widget> fabs = [
+  FloatingActionButton.small(onPressed: () {}, child: Icon(Icons.add)),
+  FloatingActionButton(onPressed: () {}, child: Icon(Icons.add)),
+  FloatingActionButton.extended(
+    onPressed: () {},
+    icon: Icon(Icons.add),
+    label: Text("Adicionar"),
+  ),
+  FloatingActionButton.large(onPressed: () {}, child: Icon(Icons.add)),
 ];

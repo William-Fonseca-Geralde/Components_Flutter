@@ -1,5 +1,5 @@
-import 'package:components_flutter/src/views/components_pages/actions/buttons_types.dart';
 import 'package:components_flutter/src/views/components_pages/actions/common_buttons.dart';
+import 'package:components_flutter/src/views/components_pages/actions/floating_action_buttons.dart';
 import 'package:flutter/material.dart';
 
 class ActionsPage extends StatelessWidget {
@@ -9,8 +9,6 @@ class ActionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return SafeArea(
       child: SingleChildScrollView(
         padding: EdgeInsets.all(25),
@@ -27,7 +25,7 @@ class ActionsPage extends StatelessWidget {
                     spacing: 30,
                     children: [
                       CommonButtons(onButtonPressed: onButtonPressed),
-                      CommonButtons(onButtonPressed: onButtonPressed)
+                      FloatingActionButtons(onButtonPressed: onButtonPressed),
                     ],
                   ),
                 ],

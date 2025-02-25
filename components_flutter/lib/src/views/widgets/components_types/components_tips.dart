@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 final Map componentTips = {
   "Actions": {
     "CommonButtons": {
-      "ElevatedButton": {
+      "Elevated Buttons": {
         "subtitle": ' Os ElevatedButtons são essencialmente botões tonais preenchidos com uma sombra. Para evitar o deslocamento de sombras, use-os apenas quando for absolutamente necessário, como quando o botão exigir separação visual de um fundo padronizado.',
         "code": {
           "Normal": {
@@ -54,7 +54,7 @@ ElevatedButton(
           "child": "Typically the button's label."
         },
       },
-      "FilledButton": {
+      "Filled Buttons": {
         "subtitle": 'Os FilledButtons têm o maior impacto visual depois do FAB e devem ser usados ​​para ações finais importantes que completam um fluxo, como Salvar, Ingressar agora ou Confirmar.',
         "code": {
           "Normal": {
@@ -105,7 +105,7 @@ FilledButton(
           "child": "Typically the button's label."
         },
       },
-      "FilledTonalButton": {
+      "Filled Tonal Buttons": {
         "subtitle": 'Os filleds tonal buttons são um meio termo alternativo entre FilledButtons e os OutlinedButtons. Eles são úteis em contextos onde um botão de prioridade mais baixa requer um pouco mais de ênfase do que um esboço daria, como “Próximo” em um fluxo de integração. Os botões tonais usam o mapeamento de cores secundárias.',
         "code": {
           "Normal": {
@@ -156,7 +156,7 @@ FilledButton.tonal(
           "child": "Typically the button's label."
         },
       },
-      "OutlinedButton": {
+      "Outlined Buttons": {
         "subtitle": 'Os OutlinedButtons são botões de ênfase média. Eles contêm ações que são importantes, mas não são a ação principal em um aplicativo, combinando bem com FilledButtons para indicar uma ação secundária alternativa.',
         "code": {
           "Normal": {
@@ -207,7 +207,7 @@ OutlinedButton(
           "child": "Typically the button's label."
         },
       },
-      "TextButton": {
+      "Text Buttons": {
         "subtitle": 'Os TextButtons são utilizados para as ações de prioridade mais baixa, especialmente quando apresentam múltiplas opções, podendo serem colocados em vários planos de fundo. Até que haja interação com o botão, seu contêiner não estará visível.',
         "code": {
           "Normal": {
@@ -260,7 +260,57 @@ TextButton(
       },
     },
     "FloatingButtons": {
-      "SmallFAB": {},
+      "Small FAB": {
+        "subtitle": 'Um FAB pequeno é usado para uma ação secundária de suporte ou no lugar de um FAB padrão em tamanhos de janela compactos. Um ou mais FABs pequenos podem ser emparelhados com um FAB padrão ou FAB estendido.',
+        "code": {
+          "Normal": {
+            "codigo":
+'''
+ElevatedButton(
+  onPressed: () {
+    // Algum código após o clique
+  },
+  child: Text("Elevated"),
+),''',
+            "widget": () => ElevatedButton(
+              onPressed: () {},
+              child: Text("Elevated"),
+            ),
+          },
+          "Icon":{
+            "codigo":
+'''
+ElevatedButton.icon(
+  onPressed: () {
+    // Algum código após o clique
+  },
+  label: Text("Ícone"),
+  icon: Icon(Icons.add),
+),''',
+            "widget": () => ElevatedButton.icon(
+              onPressed: () {},
+              label: Text("Ícone"),
+              icon: Icon(Icons.add),
+            ),
+          },
+          "Desativado":{
+            "codigo": 
+'''
+ElevatedButton(
+  onPressed: null,
+  child: Text("Elevated"),
+),''',
+            "widget": () => ElevatedButton(
+              onPressed: null,
+              child: Text("Elevated"),
+            ),
+          }
+        },
+        "properties": {
+          "autofocus": "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
+          "child": "Typically the button's label."
+        },
+      },
       "FAB": {},
       "LargeFAB": {},
       "ExtendedFAB": {}
@@ -278,25 +328,44 @@ TextButton(
   },
   "Communication": {
     "Badges": {
-      "Small&Large": {}
+      "Small": {},
+      "Large": {}
     },
     "ProgressIndicators": {
       "Linear": {},
       "Circular": {}
     },
-    "SnackBar": {},
+    "SnackBar": {
+      "SnackBar": {}
+    },
     "ToolTips": {
       "Plain": {},
       "Rich": {}
     },
   },
   "Contaiment": {
-    "BottomSheet": {},
-    "Cards": {},
-    "Carousel": {},
-    "Dialogs": {},
-    "Divider": {},
-    "Lists": {}
+    "BottomSheet": {
+      "Standard": {},
+      "Modal": {}
+    },
+    "Cards": {
+      "Elevated": {},
+      "Filled": {},
+      "Outlined": {}
+    },
+    "Carousel": {
+      "MultiBrowse": {},
+      "Uncountained": {},
+      "Hero": {},
+      "FullScreen": {},
+    },
+    "Dialogs": {
+      "Basic": {},
+      "FullScreen": {},
+    },
+    "Lists": {
+      "Lists": {}
+    }
   },
   "Navigation": {
     "BottomAppBar": {},
