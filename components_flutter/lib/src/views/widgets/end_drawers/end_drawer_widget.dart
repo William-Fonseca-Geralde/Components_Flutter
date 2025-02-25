@@ -56,21 +56,22 @@ class EndDrawerWidget extends StatelessWidget {
                       isScrollable: true,
                       labelColor: Theme.of(context).colorScheme.primary,
                       unselectedLabelColor: Colors.grey,
-                      tabs: component.keys.map((name) => Tab(text: name)).toList(),
+                      tabs:
+                          component.keys
+                              .map((name) => Tab(text: name))
+                              .toList(),
                     ),
                     SizedBox(
                       height: constraints.maxHeight * 0.74,
                       child: TabBarView(
                         children:
-                            component.values
-                                .map((comp) {
-                                  return _buildComponentDetails(
-                                    context,
-                                    comp,
-                                    constraints,
-                                  );
-                                })
-                                .toList(),
+                            component.values.map((comp) {
+                              return _buildComponentDetails(
+                                context,
+                                comp,
+                                constraints,
+                              );
+                            }).toList(),
                       ),
                     ),
                   ],
@@ -94,107 +95,126 @@ class EndDrawerWidget extends StatelessWidget {
         child: Column(
           spacing: 25,
           children: [
-            Text(
-              componentData['subtitle'] ?? "Sem Informações",
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            selectedComponent != ''
-                ? Column(
-                  spacing: 50,
+            LayoutBuilder(
+              builder: (context, constraints) {
+                bool isWideScreen = MediaQuery.of(context).size.width > 900;
+
+                return Flex(
+                  direction: isWideScreen ? Axis.horizontal : Axis.vertical,
                   children: [
-                    Text(
-                      "Como é Implementado",
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    IntrinsicHeight(
-                      child: Wrap(
-                        runSpacing: 15,
-                        alignment: WrapAlignment.center,
-                        spacing: 15,
-                        children: [
-                          for (var entry
-                              in componentData["code"]?.entries ?? [])
-                            ConstrainedBox(
-                              constraints: BoxConstraints(
-                                maxWidth:
-                                    constraints.maxWidth < 600 ? 350 : 450,
-                              ),
-                              child: IntrinsicHeight(
-                                child: Column(
-                                  spacing: 10,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      entry.key,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Card.filled(
-                                        child: SizedBox(
-                                          width: 300,
-                                          height: 275,
-                                          child: Padding(
-                                            padding: EdgeInsets.all(16),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              mainAxisSize: MainAxisSize.min,
-                                              spacing: 30,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: Card.outlined(
-                                                        borderOnForeground:
-                                                            true,
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                10,
-                                                              ),
-                                                          child: SelectableText(
-                                                            entry
-                                                                .value["codigo"],
-                                                            style: TextStyle(
-                                                              fontFamily:
-                                                                  'monospace',
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child:
-                                                          entry
-                                                              .value["widget"](),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(height: 30),
-                                  ],
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
+                    // Expanded(
+                    //   child: Padding(
+                    //     padding: EdgeInsets.only(right: isWideScreen ? 20 : 0),
+                    //     child: Text(
+                    //       componentData['subtitle'] ?? "Sem Informações",
+                    //       style: Theme.of(context).textTheme.bodyLarge,
+                    //     ),
+                    //   ),
+                    // ),
+                    // Expanded(
+                    //   child: SingleChildScrollView(
+                    //     child: Column(
+                    //       spacing: 50,
+                    //       children: [
+                    //         Text(
+                    //           "Como é Implementado",
+                    //           style: Theme.of(context).textTheme.titleLarge,
+                    //         ),
+                    //         IntrinsicHeight(
+                    //           child: Wrap(
+                    //             runSpacing: 15,
+                    //             alignment: WrapAlignment.center,
+                    //             spacing: 15,
+                    //             children: [
+                    //               for (var entry
+                    //                   in componentData["code"]?.entries ?? [])
+                    //                 ConstrainedBox(
+                    //                   constraints: BoxConstraints(
+                    //                     maxWidth:
+                    //                         constraints.maxWidth < 600
+                    //                             ? 350
+                    //                             : 450,
+                    //                   ),
+                    //                   child: IntrinsicHeight(
+                    //                     child: Column(
+                    //                       spacing: 10,
+                    //                       crossAxisAlignment:
+                    //                           CrossAxisAlignment.center,
+                    //                       children: [
+                    //                         Text(
+                    //                           entry.key,
+                    //                           style: TextStyle(
+                    //                             fontWeight: FontWeight.bold,
+                    //                             fontSize: 18,
+                    //                           ),
+                    //                         ),
+                    //                         Card.filled(
+                    //                           child: SizedBox(
+                    //                             width: 300,
+                    //                             height: 275,
+                    //                             child: Padding(
+                    //                               padding: EdgeInsets.all(16),
+                    //                               child: Column(
+                    //                                 mainAxisAlignment:
+                    //                                     MainAxisAlignment
+                    //                                         .spaceBetween,
+                    //                                 mainAxisSize:
+                    //                                     MainAxisSize.min,
+                    //                                 spacing: 30,
+                    //                                 children: [
+                    //                                   Row(
+                    //                                     children: [
+                    //                                       Expanded(
+                    //                                         child: Card.outlined(
+                    //                                           borderOnForeground:
+                    //                                               true,
+                    //                                           child: Padding(
+                    //                                             padding:
+                    //                                                 EdgeInsets.all(
+                    //                                                   10,
+                    //                                                 ),
+                    //                                             child: SelectableText(
+                    //                                               entry
+                    //                                                   .value["codigo"],
+                    //                                               style: TextStyle(
+                    //                                                 fontFamily:
+                    //                                                     'monospace',
+                    //                                               ),
+                    //                                             ),
+                    //                                           ),
+                    //                                         ),
+                    //                                       ),
+                    //                                     ],
+                    //                                   ),
+                    //                                   Row(
+                    //                                     mainAxisAlignment:
+                    //                                         MainAxisAlignment
+                    //                                             .center,
+                    //                                     children: [
+                    //                                       entry
+                    //                                           .value["widget"](),
+                    //                                     ],
+                    //                                   ),
+                    //                                 ],
+                    //                               ),
+                    //                             ),
+                    //                           ),
+                    //                         ),
+                    //                       ],
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                   ],
-                )
-                : Text("Sem código"),
+                );
+              },
+            ),
           ],
         ),
       ),

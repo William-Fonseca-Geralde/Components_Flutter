@@ -15,19 +15,13 @@ class ActionsPage extends StatelessWidget {
         child: LayoutBuilder(
           builder: (context, constraints) {
             return Center(
-              child: Column(
+              child: Wrap(
+                runSpacing: 30,
+                alignment: WrapAlignment.center,
                 spacing: 30,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Wrap(
-                    runSpacing: 30,
-                    alignment: WrapAlignment.center,
-                    spacing: 30,
-                    children: [
-                      CommonButtons(onButtonPressed: onButtonPressed),
-                      FloatingActionButtons(onButtonPressed: onButtonPressed),
-                    ],
-                  ),
+                  CommonButtons(onButtonPressed: onButtonPressed),
+                  FloatingActionButtons(onButtonPressed: onButtonPressed),
                 ],
               ),
             );

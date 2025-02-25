@@ -1,16 +1,11 @@
 import 'package:components_flutter/src/views/components_pages/actions/buttons_types.dart';
 import 'package:flutter/material.dart';
 
-class FloatingActionButtons extends StatefulWidget {
+class FloatingActionButtons extends StatelessWidget {
   const FloatingActionButtons({super.key, required this.onButtonPressed});
 
   final Function(String) onButtonPressed;
 
-  @override
-  State<FloatingActionButtons> createState() => _FloatingActionButtonsState();
-}
-
-class _FloatingActionButtonsState extends State<FloatingActionButtons> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,7 +24,7 @@ class _FloatingActionButtonsState extends State<FloatingActionButtons> {
               style: ButtonStyle(
                 minimumSize: WidgetStatePropertyAll(Size(15, 15)),
               ),
-              onPressed: () => widget.onButtonPressed("Botões de Ação Flutuante"),
+              onPressed: () => onButtonPressed("Botões de Ação Flutuante"),
               icon: Icon(Icons.question_mark),
             ),
           ],

@@ -266,45 +266,15 @@ TextButton(
           "Normal": {
             "codigo":
 '''
-ElevatedButton(
+FloatingActionButton.small(
   onPressed: () {
     // Algum código após o clique
-  },
-  child: Text("Elevated"),
-),''',
-            "widget": () => ElevatedButton(
-              onPressed: () {},
-              child: Text("Elevated"),
-            ),
+  }, 
+  child: Icon(Icons.add)
+),
+''',
+            "widget": () => FloatingActionButton.small(onPressed: () {}, child: Icon(Icons.add)),
           },
-          "Icon":{
-            "codigo":
-'''
-ElevatedButton.icon(
-  onPressed: () {
-    // Algum código após o clique
-  },
-  label: Text("Ícone"),
-  icon: Icon(Icons.add),
-),''',
-            "widget": () => ElevatedButton.icon(
-              onPressed: () {},
-              label: Text("Ícone"),
-              icon: Icon(Icons.add),
-            ),
-          },
-          "Desativado":{
-            "codigo": 
-'''
-ElevatedButton(
-  onPressed: null,
-  child: Text("Elevated"),
-),''',
-            "widget": () => ElevatedButton(
-              onPressed: null,
-              child: Text("Elevated"),
-            ),
-          }
         },
         "properties": {
           "autofocus": "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
