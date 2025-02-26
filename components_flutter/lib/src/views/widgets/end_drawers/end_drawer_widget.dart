@@ -1,4 +1,4 @@
-import 'package:components_flutter/src/views/widgets/components_types/components_tips.dart';
+import 'package:components_flutter/src/components_types/components_tips.dart';
 import 'package:components_flutter/src/views/widgets/end_drawers/card_explicacao.dart';
 import 'package:components_flutter/src/views/widgets/end_drawers/dart_implementacao.dart';
 import 'package:flutter/material.dart';
@@ -176,7 +176,7 @@ class _EndDrawerWidgetState extends ConsumerState<EndDrawerWidget>
                   alignment: WrapAlignment.center,
                   spacing: 30,
                   children: [
-                    CardExplicacao(context: context, componentData: componentData, constraints: constraints),
+                    CardExplicacao(context: context, componentData: componentData["explicacao"], constraints: constraints),
                     DartImplementacao(context: context, componentData: componentData, constraints: constraints),
                   ],
                 );

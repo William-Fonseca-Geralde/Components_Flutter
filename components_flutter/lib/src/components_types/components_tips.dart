@@ -4,7 +4,19 @@ final Map componentTips = {
   "Actions": {
     "CommonButtons": {
       "Elevated Buttons": {
-        "subtitle": ' Os ElevatedButtons são essencialmente botões tonais preenchidos com uma sombra. Para evitar o deslocamento de sombras, use-os apenas quando for absolutamente necessário, como quando o botão exigir separação visual de um fundo padronizado.',
+        "explicacao": {
+          "subtitle": ' Os ElevatedButtons são essencialmente botões tonais preenchidos com uma sombra. Para evitar o deslocamento de sombras, use-os apenas quando for absolutamente necessário, como quando o botão exigir separação visual de um fundo padronizado.',
+          "colors": {
+            "imgs": [
+              "assets/imgs/elevatedBtnColorW.png",
+              "assets/imgs/elevatedBtnColorB.png",
+            ],
+            "types": [
+              "Surface container low",
+              "Primary"
+            ],
+          }
+        },
         "code": {
           "Normal": {
             "codigo":
@@ -55,6 +67,7 @@ ElevatedButton(
         },
       },
       "Filled Buttons": {
+        "explicacao": {},
         "subtitle": 'Os FilledButtons têm o maior impacto visual depois do FAB e devem ser usados ​​para ações finais importantes que completam um fluxo, como Salvar, Ingressar agora ou Confirmar.',
         "code": {
           "Normal": {
@@ -106,6 +119,7 @@ FilledButton(
         },
       },
       "Filled Tonal Buttons": {
+        "explicacao": {},
         "subtitle": 'Os filleds tonal buttons são um meio termo alternativo entre FilledButtons e os OutlinedButtons. Eles são úteis em contextos onde um botão de prioridade mais baixa requer um pouco mais de ênfase do que um esboço daria, como “Próximo” em um fluxo de integração. Os botões tonais usam o mapeamento de cores secundárias.',
         "code": {
           "Normal": {
@@ -157,6 +171,7 @@ FilledButton.tonal(
         },
       },
       "Outlined Buttons": {
+        "explicacao": {},
         "subtitle": 'Os OutlinedButtons são botões de ênfase média. Eles contêm ações que são importantes, mas não são a ação principal em um aplicativo, combinando bem com FilledButtons para indicar uma ação secundária alternativa.',
         "code": {
           "Normal": {
@@ -208,6 +223,7 @@ OutlinedButton(
         },
       },
       "Text Buttons": {
+        "explicacao": {},
         "subtitle": 'Os TextButtons são utilizados para as ações de prioridade mais baixa, especialmente quando apresentam múltiplas opções, podendo serem colocados em vários planos de fundo. Até que haja interação com o botão, seu contêiner não estará visível.',
         "code": {
           "Normal": {
@@ -261,6 +277,7 @@ TextButton(
     },
     "FloatingButtons": {
       "Small FAB": {
+        "explicacao": {},
         "subtitle": 'Um FAB pequeno é usado para uma ação secundária de suporte ou no lugar de um FAB padrão em tamanhos de janela compactos. Um ou mais FABs pequenos podem ser emparelhados com um FAB padrão ou FAB estendido.',
         "code": {
           "Normal": {
