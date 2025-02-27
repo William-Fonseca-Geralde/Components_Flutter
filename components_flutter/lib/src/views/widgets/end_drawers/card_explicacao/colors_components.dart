@@ -1,6 +1,6 @@
 import 'package:components_flutter/src/components_types/components_tips.dart';
+import 'package:components_flutter/src/views/colors_pages/color_box.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class ColorsComponents extends StatefulWidget {
   const ColorsComponents({
@@ -21,7 +21,8 @@ class _ColorsComponentsState extends State<ColorsComponents> {
 
   @override
   Widget build(BuildContext context) {
-    bool isLarge = MediaQuery.of(context).size.width > 700;
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    bool isLarge = MediaQuery.of(context).size.width > 720;
 
     return SizedBox(
       width:
@@ -91,7 +92,6 @@ class _ColorsComponentsState extends State<ColorsComponents> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
-                      horizontal: 12,
                     ),
                     child: SingleChildScrollView(
                       child: Padding(
@@ -102,15 +102,22 @@ class _ColorsComponentsState extends State<ColorsComponents> {
                           alignment: WrapAlignment.center,
                           children: [
                             SizedBox(
-                              width: isLarge ? 200 : 280,
-                              child: Image.asset(
-                                widget.componentData["imgs"][0] ??
-                                    "Sem Informação",
-                                fit: BoxFit.cover,
+                              width: isLarge ? 200 : 300,
+                              child: Column(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.asset(
+                                      widget.componentData["imgs"][0] ??
+                                          "Sem Informação",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             SizedBox(
-                              width: isLarge ? 200 : double.infinity,
+                              width: isLarge ? 230 : double.infinity,
                               child: ListView.builder(
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
@@ -120,20 +127,23 @@ class _ColorsComponentsState extends State<ColorsComponents> {
                                       .componentData["types"]
                                       .keys
                                       .elementAt(index);
-                                  String value =
-                                      widget.componentData["types"][key];
+                                  
+                                  Color cor = getColorFromScheme(colorScheme, widget.componentData["types"][key][0]);
+                                  Color onCor = getColorFromScheme(colorScheme, widget.componentData["types"][key][1]);
 
                                   return Column(
+                                    spacing: 50,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        "${index + 1} - $key",
-                                        style:
-                                            Theme.of(
-                                              context,
-                                            ).textTheme.bodyLarge,
+                                      ColorBox(
+                                        label: "${index + 1} - $key",
+                                        color: cor,
+                                        onColor: onCor,
+                                        height: 95,
+                                        width: 235,
                                       ),
+                                      
                                     ],
                                   );
                                 },
