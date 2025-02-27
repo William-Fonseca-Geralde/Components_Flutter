@@ -1,4 +1,6 @@
+import 'package:components_flutter/src/components_types/components_tips.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ColorsComponents extends StatefulWidget {
   const ColorsComponents({
@@ -19,6 +21,8 @@ class _ColorsComponentsState extends State<ColorsComponents> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLarge = MediaQuery.of(context).size.width > 700;
+
     return SizedBox(
       width:
           widget.constraints.maxWidth < 800
@@ -78,38 +82,66 @@ class _ColorsComponentsState extends State<ColorsComponents> {
             ),
             AnimatedContainer(
               duration: Duration(milliseconds: 250),
-              height: isExpanded ? 500 : 0,
-              child: Card(
-                color: Theme.of(context).colorScheme.surface,
-                elevation: 0,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8,
-                    horizontal: 12,
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Image.asset(widget.componentData["imgs"][0], width: 400),
-                        Image.asset(widget.componentData["imgs"][1], width: 400),
-                        SizedBox(
-                          width: 500,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: widget.componentData["types"].length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 20),
-                                child: Text(
-                                  "${index + 1} - ${widget.componentData["types"][index]}",
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                ),
-                              );
-                            },
-                          ),
+              height: isExpanded ? (isLarge ? 260 : 430) : 0,
+              child: Container(
+                constraints: BoxConstraints.expand(),
+                child: Card(
+                  color: Theme.of(context).colorScheme.surface,
+                  elevation: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 12,
+                    ),
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Wrap(
+                          spacing: 15,
+                          runSpacing: 15,
+                          alignment: WrapAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: isLarge ? 200 : 280,
+                              child: Image.asset(
+                                widget.componentData["imgs"][0] ??
+                                    "Sem Informação",
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            SizedBox(
+                              width: isLarge ? 200 : double.infinity,
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: widget.componentData["types"].length,
+                                itemBuilder: (context, index) {
+                                  String key = widget
+                                      .componentData["types"]
+                                      .keys
+                                      .elementAt(index);
+                                  String value =
+                                      widget.componentData["types"][key];
+
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "${index + 1} - $key",
+                                        style:
+                                            Theme.of(
+                                              context,
+                                            ).textTheme.bodyLarge,
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),

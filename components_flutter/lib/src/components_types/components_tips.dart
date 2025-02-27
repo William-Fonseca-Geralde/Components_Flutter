@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
 
-final Map componentTips = {
-  "Actions": {
-    "CommonButtons": {
-      "Elevated Buttons": {
-        "explicacao": {
-          "subtitle": ' Os ElevatedButtons são essencialmente botões tonais preenchidos com uma sombra. Para evitar o deslocamento de sombras, use-os apenas quando for absolutamente necessário, como quando o botão exigir separação visual de um fundo padronizado.',
-          "colors": {
-            "imgs": [
-              "assets/imgs/elevatedBtnColorW.png",
-              "assets/imgs/elevatedBtnColorB.png",
-            ],
-            "types": [
-              "Surface container low",
-              "Primary"
-            ],
-          }
-        },
-        "code": {
-          "Normal": {
-            "codigo":
-'''
+class ComponentsTips {
+  Map build(BuildContext context) {
+    return {
+      "Actions": {
+        "CommonButtons": {
+          "Elevated Buttons": {
+            "explicacao": {
+              "subtitle":
+                  ' Os ElevatedButtons são essencialmente botões tonais preenchidos com uma sombra. Para evitar o deslocamento de sombras, use-os apenas quando for absolutamente necessário, como quando o botão exigir separação visual de um fundo padronizado.',
+              "colors": {
+                "imgs": ["assets/imgs/elevatedButtonColor.png"],
+                "types": {
+                  "Surface container low":
+                      Theme.of(context).colorScheme.surfaceContainerLow,
+                  "Primary": "primary",
+                },
+              },
+            },
+            "code": {
+              "Normal": {
+                "codigo": '''
 ElevatedButton(
   onPressed: () {
     // Algum código após o clique
   },
   child: Text("Elevated"),
 ),''',
-            "widget": () => ElevatedButton(
-              onPressed: () {},
-              child: Text("Elevated"),
-            ),
-          },
-          "Icon":{
-            "codigo":
-'''
+                "widget":
+                    () => ElevatedButton(
+                      onPressed: () {},
+                      child: Text("Elevated"),
+                    ),
+              },
+              "Icon": {
+                "codigo": '''
 ElevatedButton.icon(
   onPressed: () {
     // Algum código após o clique
@@ -42,51 +42,55 @@ ElevatedButton.icon(
   label: Text("Ícone"),
   icon: Icon(Icons.add),
 ),''',
-            "widget": () => ElevatedButton.icon(
-              onPressed: () {},
-              label: Text("Ícone"),
-              icon: Icon(Icons.add),
-            ),
-          },
-          "Desativado":{
-            "codigo": 
-'''
+                "widget":
+                    () => ElevatedButton.icon(
+                      onPressed: () {},
+                      label: Text("Ícone"),
+                      icon: Icon(Icons.add),
+                    ),
+              },
+              "Desativado": {
+                "codigo": '''
 ElevatedButton(
   onPressed: null,
   child: Text("Elevated"),
 ),''',
-            "widget": () => ElevatedButton(
-              onPressed: null,
-              child: Text("Elevated"),
-            ),
-          }
-        },
-        "properties": {
-          "autofocus": "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
-          "child": "Typically the button's label."
-        },
-      },
-      "Filled Buttons": {
-        "explicacao": {},
-        "subtitle": 'Os FilledButtons têm o maior impacto visual depois do FAB e devem ser usados ​​para ações finais importantes que completam um fluxo, como Salvar, Ingressar agora ou Confirmar.',
-        "code": {
-          "Normal": {
-            "codigo":
-'''
+                "widget":
+                    () => ElevatedButton(
+                      onPressed: null,
+                      child: Text("Elevated"),
+                    ),
+              },
+            },
+            "properties": {
+              "autofocus":
+                  "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
+              "child": "Typically the button's label.",
+            },
+          },
+          "Filled Buttons": {
+            "explicacao": {
+              "subtitle":
+                  'Os FilledButtons têm o maior impacto visual depois do FAB e devem ser usados ​​para ações finais importantes que completam um fluxo, como Salvar, Ingressar    agora ou Confirmar.',
+              "colors": {"imgs": [], "types": [
+
+            ]
+          },
+            },
+            "code": {
+              "Normal": {
+                "codigo": '''
 FilledButton(
   onPressed: () {
     // Algum código após o clique
   },
   child: Text("Filled"),
 ),''',
-            "widget": () => FilledButton(
-              onPressed: () {},
-              child: Text("Filled"),
-            ),
-          },
-          "Icon":{
-            "codigo":
-'''
+                "widget":
+                    () => FilledButton(onPressed: () {}, child: Text("Filled")),
+              },
+              "Icon": {
+                "codigo": '''
 FilledButton.icon(
   onPressed: () {
     // Algum código após o clique
@@ -94,51 +98,55 @@ FilledButton.icon(
   label: Text("Ícone"),
   icon: Icon(Icons.add),
 ),''',
-            "widget": () => FilledButton.icon(
-              onPressed: () {},
-              label: Text("Ícone"),
-              icon: Icon(Icons.add),
-            ),
-          },
-          "Desativado":{
-            "codigo":
-'''
+                "widget":
+                    () => FilledButton.icon(
+                      onPressed: () {},
+                      label: Text("Ícone"),
+                      icon: Icon(Icons.add),
+                    ),
+              },
+              "Desativado": {
+                "codigo": '''
 FilledButton(
   onPressed: null,
   child: Text("Filled"),
 ),''',
-            "widget": () => FilledButton(
-              onPressed: null,
-              child: Text("Filled"),
-            ),
-          }
-        },
-        "properties": {
-          "autofocus": "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
-          "child": "Typically the button's label."
-        },
-      },
-      "Filled Tonal Buttons": {
-        "explicacao": {},
-        "subtitle": 'Os filleds tonal buttons são um meio termo alternativo entre FilledButtons e os OutlinedButtons. Eles são úteis em contextos onde um botão de prioridade mais baixa requer um pouco mais de ênfase do que um esboço daria, como “Próximo” em um fluxo de integração. Os botões tonais usam o mapeamento de cores secundárias.',
-        "code": {
-          "Normal": {
-            "codigo":
-'''
+                "widget":
+                    () => FilledButton(onPressed: null, child: Text("Filled")),
+              },
+            },
+            "properties": {
+              "autofocus":
+                  "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
+              "child": "Typically the button's label.",
+            },
+          },
+          "Filled Tonal Buttons": {
+            "explicacao": {
+              "subtitle":
+                  'Os filleds tonal buttons são um meio termo alternativo entre FilledButtons e os OutlinedButtons. Eles são úteis em contextos onde um botão de prioridade mais baixa requer um pouco mais de ênfase do que um esboço daria, como “Próximo” em um fluxo de integração. Os botões tonais usam o mapeamento de cores secundárias.',
+              "colors": {"imgs": [], "types": [
+
+            ]
+          },
+            },
+            "code": {
+              "Normal": {
+                "codigo": '''
 FilledButton.tonal(
   onPressed: () {
     // Algum código após o clique
   },
   child: Text("Filled Tonal"),
 ),''',
-            "widget": () => FilledButton.tonal(
-              onPressed: () {},
-              child: Text("Filled Tonal"),
-            ),
-          },
-          "Icon":{
-            "codigo":
-'''
+                "widget":
+                    () => FilledButton.tonal(
+                      onPressed: () {},
+                      child: Text("Filled Tonal"),
+                    ),
+              },
+              "Icon": {
+                "codigo": '''
 FilledButton.tonalIcon(
   onPressed: () {
     // Algum código após o clique
@@ -146,51 +154,58 @@ FilledButton.tonalIcon(
   label: Text("Ícone"),
   icon: Icon(Icons.add),
 ),''',
-            "widget": () => FilledButton.tonalIcon(
-              onPressed: () {},
-              label: Text("Ícone"),
-              icon: Icon(Icons.add),
-            ),
-          },
-          "Desativado":{
-            "codigo":
-'''
+                "widget":
+                    () => FilledButton.tonalIcon(
+                      onPressed: () {},
+                      label: Text("Ícone"),
+                      icon: Icon(Icons.add),
+                    ),
+              },
+              "Desativado": {
+                "codigo": '''
 FilledButton.tonal(
   onPressed: null,
   child: Text("Filled Tonal"),
 ),''',
-            "widget": () => FilledButton.tonal(
-              onPressed: null,
-              child: Text("Filled Tonal"),
-            ),
-          }
-        },
-        "properties": {
-          "autofocus": "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
-          "child": "Typically the button's label."
-        },
-      },
-      "Outlined Buttons": {
-        "explicacao": {},
-        "subtitle": 'Os OutlinedButtons são botões de ênfase média. Eles contêm ações que são importantes, mas não são a ação principal em um aplicativo, combinando bem com FilledButtons para indicar uma ação secundária alternativa.',
-        "code": {
-          "Normal": {
-            "codigo":
-'''
+                "widget":
+                    () => FilledButton.tonal(
+                      onPressed: null,
+                      child: Text("Filled Tonal"),
+                    ),
+              },
+            },
+            "properties": {
+              "autofocus":
+                  "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
+              "child": "Typically the button's label.",
+            },
+          },
+          "Outlined Buttons": {
+            "explicacao": {
+              "subtitle":
+                  'Os OutlinedButtons são botões de ênfase média. Eles contêm ações que são importantes, mas não são a ação principal em um aplicativo, combinando bem com FilledButtons para indicar uma ação secundária alternativa.',
+              "colors": {"imgs": [], "types": [
+
+            ]
+          },
+            },
+            "code": {
+              "Normal": {
+                "codigo": '''
 OutlinedButton(
   onPressed: () {
     // Algum código após o clique
   },
   child: Text("Outlined"),
 ),''',
-            "widget": () => OutlinedButton(
-              onPressed: () {},
-              child: Text("Outlined"),
-            ),
-          },
-          "Icon":{
-            "codigo":
-'''
+                "widget":
+                    () => OutlinedButton(
+                      onPressed: () {},
+                      child: Text("Outlined"),
+                    ),
+              },
+              "Icon": {
+                "codigo": '''
 OutlinedButton.icon(
   onPressed: () {
     // Algum código após o clique
@@ -198,51 +213,55 @@ OutlinedButton.icon(
   label: Text("Ícone"),
   icon: Icon(Icons.add),
 ),''',
-            "widget": () => OutlinedButton.icon(
-              onPressed: () {},
-              label: Text("Ícone"),
-              icon: Icon(Icons.add),
-            ),
-          },
-          "Desativado":{
-            "codigo":
-'''
+                "widget":
+                    () => OutlinedButton.icon(
+                      onPressed: () {},
+                      label: Text("Ícone"),
+                      icon: Icon(Icons.add),
+                    ),
+              },
+              "Desativado": {
+                "codigo": '''
 OutlinedButton(
   onPressed: null,
   child: Text("Outlined"),
 ),''',
-            "widget": () => OutlinedButton(
-              onPressed: null,
-              child: Text("Outlined"),
-            ),
-          }
-        },
-        "properties": {
-          "autofocus": "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
-          "child": "Typically the button's label."
-        },
-      },
-      "Text Buttons": {
-        "explicacao": {},
-        "subtitle": 'Os TextButtons são utilizados para as ações de prioridade mais baixa, especialmente quando apresentam múltiplas opções, podendo serem colocados em vários planos de fundo. Até que haja interação com o botão, seu contêiner não estará visível.',
-        "code": {
-          "Normal": {
-            "codigo":
-'''
+                "widget":
+                    () => OutlinedButton(
+                      onPressed: null,
+                      child: Text("Outlined"),
+                    ),
+              },
+            },
+            "properties": {
+              "autofocus":
+                  "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
+              "child": "Typically the button's label.",
+            },
+          },
+          "Text Buttons": {
+            "explicacao": {
+              "subtitle":
+                  'Os TextButtons são utilizados para as ações de prioridade mais baixa, especialmente quando apresentam múltiplas opções, podendo serem colocados em vários planos de fundo. Até que haja interação com o botão, seu contêiner não estará visível.',
+              "colors": {"imgs": [], "types": [
+
+            ]
+          },
+            },
+            "code": {
+              "Normal": {
+                "codigo": '''
 TextButton(
   onPressed: () {
     // Algum código após o clique
   },
   child: Text("Text"),
 ),''',
-            "widget": () => TextButton(
-              onPressed: () {},
-              child: Text("Text"),
-            ),
-          },
-          "Icon":{
-            "codigo":
-'''
+                "widget":
+                    () => TextButton(onPressed: () {}, child: Text("Text")),
+              },
+              "Icon": {
+                "codigo": '''
 TextButton.icon(
   onPressed: () {
     // Algum código após o clique
@@ -250,39 +269,43 @@ TextButton.icon(
   label: Text("Ícone"),
   icon: Icon(Icons.add),
 ),''',
-            "widget": () => TextButton.icon(
-              onPressed: () {},
-              label: Text("Ícone"),
-              icon: Icon(Icons.add),
-            ),
-          },
-          "Desativado":{
-            "codigo":
-'''
+                "widget":
+                    () => TextButton.icon(
+                      onPressed: () {},
+                      label: Text("Ícone"),
+                      icon: Icon(Icons.add),
+                    ),
+              },
+              "Desativado": {
+                "codigo": '''
 TextButton(
   onPressed: null,
   child: Text("Text"),
 ),''',
-            "widget": () => TextButton(
-              onPressed: null,
-              child: Text("Text"),
-            ),
-          }
+                "widget":
+                    () => TextButton(onPressed: null, child: Text("Text")),
+              },
+            },
+            "properties": {
+              "autofocus":
+                  "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
+              "child": "Typically the button's label.",
+            },
+          },
         },
-        "properties": {
-          "autofocus": "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
-          "child": "Typically the button's label."
-        },
-      },
-    },
-    "FloatingButtons": {
-      "Small FAB": {
-        "explicacao": {},
-        "subtitle": 'Um FAB pequeno é usado para uma ação secundária de suporte ou no lugar de um FAB padrão em tamanhos de janela compactos. Um ou mais FABs pequenos podem ser emparelhados com um FAB padrão ou FAB estendido.',
-        "code": {
-          "Normal": {
-            "codigo":
-'''
+        "FloatingButtons": {
+          "Small FAB": {
+            "explicacao": {
+              "subtitle":
+                  'Um FAB pequeno é usado para uma ação secundária de suporte ou no lugar de um FAB padrão em tamanhos de janela compactos. Um ou mais FABs pequenos podem ser emparelhados com um FAB padrão ou FAB estendido.',
+              "colors": {"imgs": [], "types": [
+
+            ]
+          },
+            },
+            "code": {
+              "Normal": {
+                "codigo": '''
 FloatingActionButton.small(
   onPressed: () {
     // Algum código após o clique
@@ -290,17 +313,385 @@ FloatingActionButton.small(
   child: Icon(Icons.add)
 ),
 ''',
-            "widget": () => FloatingActionButton.small(onPressed: () {}, child: Icon(Icons.add)),
+                "widget":
+                    () => FloatingActionButton.small(
+                      onPressed: () {},
+                      child: Icon(Icons.add),
+                    ),
+              },
+            },
+            "properties": {
+              "autofocus":
+                  "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
+              "child": "Typically the button's label.",
+            },
+          },
+          "FAB": {},
+          "LargeFAB": {},
+          "ExtendedFAB": {},
+        },
+        "IconButtons": {
+          "IconButton": {},
+          "IconFilledButton": {},
+          "IconFilledTonalButton": {},
+          "IconOutlinedButton": {},
+        },
+        "SegmentedButtons": {"SingleSelected": {}, "MultiSelected": {}},
+      },
+      "Communication": {
+        "Badges": {"Small": {}, "Large": {}},
+        "ProgressIndicators": {"Linear": {}, "Circular": {}},
+        "SnackBar": {"SnackBar": {}},
+        "ToolTips": {"Plain": {}, "Rich": {}},
+      },
+      "Contaiment": {
+        "BottomSheet": {"Standard": {}, "Modal": {}},
+        "Cards": {"Elevated": {}, "Filled": {}, "Outlined": {}},
+        "Carousel": {
+          "MultiBrowse": {},
+          "Uncountained": {},
+          "Hero": {},
+          "FullScreen": {},
+        },
+        "Dialogs": {"Basic": {}, "FullScreen": {}},
+        "Lists": {"Lists": {}},
+      },
+      "Navigation": {
+        "BottomAppBar": {},
+        "NavigationBar": {},
+        "NavigationDrawer": {},
+        "NavigationRail": {},
+        "Search": {},
+        "Tabs": {},
+        "TopAppBar": {},
+      },
+      "Selection": {
+        "Checkbox": {},
+        "Chips": {},
+        "DatePicker": {},
+        "Menus": {},
+        "RadioButton": {},
+        "Sliders": {},
+        "Switch": {},
+        "TimePicker": {},
+      },
+      "TextInputs": {"TextField": {}},
+    };
+  }
+}
+
+final Map componentTips = {
+  "Actions": {
+    "CommonButtons": {
+      "Elevated Buttons": {
+        "explicacao": {
+          "subtitle":
+              ' Os ElevatedButtons são essencialmente botões tonais preenchidos com uma sombra. Para evitar o deslocamento de sombras, use-os apenas quando for absolutamente necessário, como quando o botão exigir separação visual de um fundo padronizado.',
+          "colors": {
+            "imgs": ["assets/imgs/elevatedButtonColor.png"],
+            "types": {
+              "Surface container low": "surfaceContainerLow",
+              "Primary": "primary",
+            },
+          },
+        },
+        "code": {
+          "Normal": {
+            "codigo": '''
+ElevatedButton(
+  onPressed: () {
+    // Algum código após o clique
+  },
+  child: Text("Elevated"),
+),''',
+            "widget":
+                () => ElevatedButton(onPressed: () {}, child: Text("Elevated")),
+          },
+          "Icon": {
+            "codigo": '''
+ElevatedButton.icon(
+  onPressed: () {
+    // Algum código após o clique
+  },
+  label: Text("Ícone"),
+  icon: Icon(Icons.add),
+),''',
+            "widget":
+                () => ElevatedButton.icon(
+                  onPressed: () {},
+                  label: Text("Ícone"),
+                  icon: Icon(Icons.add),
+                ),
+          },
+          "Desativado": {
+            "codigo": '''
+ElevatedButton(
+  onPressed: null,
+  child: Text("Elevated"),
+),''',
+            "widget":
+                () => ElevatedButton(onPressed: null, child: Text("Elevated")),
           },
         },
         "properties": {
-          "autofocus": "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
-          "child": "Typically the button's label."
+          "autofocus":
+              "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
+          "child": "Typically the button's label.",
+        },
+      },
+      "Filled Buttons": {
+        "explicacao": {
+          "subtitle":
+              'Os FilledButtons têm o maior impacto visual depois do FAB e devem ser usados ​​para ações finais importantes que completam um fluxo, como Salvar, Ingressar    agora ou Confirmar.',
+          "colors": {"imgs": [], "types": [
+
+            ]
+          },
+        },
+        "code": {
+          "Normal": {
+            "codigo": '''
+FilledButton(
+  onPressed: () {
+    // Algum código após o clique
+  },
+  child: Text("Filled"),
+),''',
+            "widget":
+                () => FilledButton(onPressed: () {}, child: Text("Filled")),
+          },
+          "Icon": {
+            "codigo": '''
+FilledButton.icon(
+  onPressed: () {
+    // Algum código após o clique
+  },
+  label: Text("Ícone"),
+  icon: Icon(Icons.add),
+),''',
+            "widget":
+                () => FilledButton.icon(
+                  onPressed: () {},
+                  label: Text("Ícone"),
+                  icon: Icon(Icons.add),
+                ),
+          },
+          "Desativado": {
+            "codigo": '''
+FilledButton(
+  onPressed: null,
+  child: Text("Filled"),
+),''',
+            "widget":
+                () => FilledButton(onPressed: null, child: Text("Filled")),
+          },
+        },
+        "properties": {
+          "autofocus":
+              "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
+          "child": "Typically the button's label.",
+        },
+      },
+      "Filled Tonal Buttons": {
+        "explicacao": {
+          "subtitle":
+              'Os filleds tonal buttons são um meio termo alternativo entre FilledButtons e os OutlinedButtons. Eles são úteis em contextos onde um botão de prioridade mais baixa requer um pouco mais de ênfase do que um esboço daria, como “Próximo” em um fluxo de integração. Os botões tonais usam o mapeamento de cores secundárias.',
+          "colors": {"imgs": [], "types": [
+
+            ]
+          },
+        },
+        "code": {
+          "Normal": {
+            "codigo": '''
+FilledButton.tonal(
+  onPressed: () {
+    // Algum código após o clique
+  },
+  child: Text("Filled Tonal"),
+),''',
+            "widget":
+                () => FilledButton.tonal(
+                  onPressed: () {},
+                  child: Text("Filled Tonal"),
+                ),
+          },
+          "Icon": {
+            "codigo": '''
+FilledButton.tonalIcon(
+  onPressed: () {
+    // Algum código após o clique
+  },
+  label: Text("Ícone"),
+  icon: Icon(Icons.add),
+),''',
+            "widget":
+                () => FilledButton.tonalIcon(
+                  onPressed: () {},
+                  label: Text("Ícone"),
+                  icon: Icon(Icons.add),
+                ),
+          },
+          "Desativado": {
+            "codigo": '''
+FilledButton.tonal(
+  onPressed: null,
+  child: Text("Filled Tonal"),
+),''',
+            "widget":
+                () => FilledButton.tonal(
+                  onPressed: null,
+                  child: Text("Filled Tonal"),
+                ),
+          },
+        },
+        "properties": {
+          "autofocus":
+              "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
+          "child": "Typically the button's label.",
+        },
+      },
+      "Outlined Buttons": {
+        "explicacao": {
+          "subtitle":
+              'Os OutlinedButtons são botões de ênfase média. Eles contêm ações que são importantes, mas não são a ação principal em um aplicativo, combinando bem com FilledButtons para indicar uma ação secundária alternativa.',
+          "colors": {"imgs": [], "types": [
+
+            ]
+          },
+        },
+        "code": {
+          "Normal": {
+            "codigo": '''
+OutlinedButton(
+  onPressed: () {
+    // Algum código após o clique
+  },
+  child: Text("Outlined"),
+),''',
+            "widget":
+                () => OutlinedButton(onPressed: () {}, child: Text("Outlined")),
+          },
+          "Icon": {
+            "codigo": '''
+OutlinedButton.icon(
+  onPressed: () {
+    // Algum código após o clique
+  },
+  label: Text("Ícone"),
+  icon: Icon(Icons.add),
+),''',
+            "widget":
+                () => OutlinedButton.icon(
+                  onPressed: () {},
+                  label: Text("Ícone"),
+                  icon: Icon(Icons.add),
+                ),
+          },
+          "Desativado": {
+            "codigo": '''
+OutlinedButton(
+  onPressed: null,
+  child: Text("Outlined"),
+),''',
+            "widget":
+                () => OutlinedButton(onPressed: null, child: Text("Outlined")),
+          },
+        },
+        "properties": {
+          "autofocus":
+              "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
+          "child": "Typically the button's label.",
+        },
+      },
+      "Text Buttons": {
+        "explicacao": {
+          "subtitle":
+              'Os TextButtons são utilizados para as ações de prioridade mais baixa, especialmente quando apresentam múltiplas opções, podendo serem colocados em vários planos de fundo. Até que haja interação com o botão, seu contêiner não estará visível.',
+          "colors": {"imgs": [], "types": [
+
+            ]
+          },
+        },
+        "code": {
+          "Normal": {
+            "codigo": '''
+TextButton(
+  onPressed: () {
+    // Algum código após o clique
+  },
+  child: Text("Text"),
+),''',
+            "widget": () => TextButton(onPressed: () {}, child: Text("Text")),
+          },
+          "Icon": {
+            "codigo": '''
+TextButton.icon(
+  onPressed: () {
+    // Algum código após o clique
+  },
+  label: Text("Ícone"),
+  icon: Icon(Icons.add),
+),''',
+            "widget":
+                () => TextButton.icon(
+                  onPressed: () {},
+                  label: Text("Ícone"),
+                  icon: Icon(Icons.add),
+                ),
+          },
+          "Desativado": {
+            "codigo": '''
+TextButton(
+  onPressed: null,
+  child: Text("Text"),
+),''',
+            "widget": () => TextButton(onPressed: null, child: Text("Text")),
+          },
+        },
+        "properties": {
+          "autofocus":
+              "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
+          "child": "Typically the button's label.",
+        },
+      },
+    },
+    "FloatingButtons": {
+      "Small FAB": {
+        "explicacao": {
+          "subtitle":
+              'Um FAB pequeno é usado para uma ação secundária de suporte ou no lugar de um FAB padrão em tamanhos de janela compactos. Um ou mais FABs pequenos podem ser emparelhados com um FAB padrão ou FAB estendido.',
+          "colors": {"imgs": [], "types": [
+
+            ]
+          },
+        },
+        "code": {
+          "Normal": {
+            "codigo": '''
+FloatingActionButton.small(
+  onPressed: () {
+    // Algum código após o clique
+  }, 
+  child: Icon(Icons.add)
+),
+''',
+            "widget":
+                () => FloatingActionButton.small(
+                  onPressed: () {},
+                  child: Icon(Icons.add),
+                ),
+          },
+        },
+        "properties": {
+          "autofocus":
+              "True if this widget will be selected as the initial focus when no other node in its scope is currently focused.",
+          "child": "Typically the button's label.",
         },
       },
       "FAB": {},
       "LargeFAB": {},
-      "ExtendedFAB": {}
+      "ExtendedFAB": {},
     },
     "IconButtons": {
       "IconButton": {},
@@ -308,51 +699,25 @@ FloatingActionButton.small(
       "IconFilledTonalButton": {},
       "IconOutlinedButton": {},
     },
-    "SegmentedButtons": {
-      "SingleSelected": {},
-      "MultiSelected": {},
-    },
+    "SegmentedButtons": {"SingleSelected": {}, "MultiSelected": {}},
   },
   "Communication": {
-    "Badges": {
-      "Small": {},
-      "Large": {}
-    },
-    "ProgressIndicators": {
-      "Linear": {},
-      "Circular": {}
-    },
-    "SnackBar": {
-      "SnackBar": {}
-    },
-    "ToolTips": {
-      "Plain": {},
-      "Rich": {}
-    },
+    "Badges": {"Small": {}, "Large": {}},
+    "ProgressIndicators": {"Linear": {}, "Circular": {}},
+    "SnackBar": {"SnackBar": {}},
+    "ToolTips": {"Plain": {}, "Rich": {}},
   },
   "Contaiment": {
-    "BottomSheet": {
-      "Standard": {},
-      "Modal": {}
-    },
-    "Cards": {
-      "Elevated": {},
-      "Filled": {},
-      "Outlined": {}
-    },
+    "BottomSheet": {"Standard": {}, "Modal": {}},
+    "Cards": {"Elevated": {}, "Filled": {}, "Outlined": {}},
     "Carousel": {
       "MultiBrowse": {},
       "Uncountained": {},
       "Hero": {},
       "FullScreen": {},
     },
-    "Dialogs": {
-      "Basic": {},
-      "FullScreen": {},
-    },
-    "Lists": {
-      "Lists": {}
-    }
+    "Dialogs": {"Basic": {}, "FullScreen": {}},
+    "Lists": {"Lists": {}},
   },
   "Navigation": {
     "BottomAppBar": {},
@@ -361,7 +726,7 @@ FloatingActionButton.small(
     "NavigationRail": {},
     "Search": {},
     "Tabs": {},
-    "TopAppBar": {}
+    "TopAppBar": {},
   },
   "Selection": {
     "Checkbox": {},
@@ -373,7 +738,5 @@ FloatingActionButton.small(
     "Switch": {},
     "TimePicker": {},
   },
-  "TextInputs": {
-    "TextField": {}
-  }
+  "TextInputs": {"TextField": {}},
 };
