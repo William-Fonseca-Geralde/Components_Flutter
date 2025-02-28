@@ -20,7 +20,9 @@ class ColorBox extends StatefulWidget {
 }
 
 class _ColorBoxState extends State<ColorBox> {
-  bool hovered = false;
+  final GlobalKey<TooltipState> tooltipKey = GlobalKey<TooltipState>();
+  bool hovered = true;
+  String mensagem = "Copiar cor hexadecimal";
 
   @override
   Widget build(BuildContext context) {
@@ -52,35 +54,37 @@ class _ColorBoxState extends State<ColorBox> {
                   Positioned(
                     top: 0,
                     right: 0,
-                    child: IconButton(
-                      padding: EdgeInsets.zero,
-                      color: widget.onColor,
-                      tooltip: "Copiar cor hexadecimal",
-                      onPressed: () async {
-                        final mensagem = ScaffoldMessenger.of(context);
-
-                        final hex =
-                            '#${_colorChannelToHex(widget.color.r)}'
-                            '${_colorChannelToHex(widget.color.g)}'
-                            '${_colorChannelToHex(widget.color.b)}';
-
-                        final data = ClipboardData(text: hex);
-                        await Clipboard.setData(data);
-
-                        mensagem.hideCurrentSnackBar();
-                        mensagem.showSnackBar(
-                          SnackBar(
-                            content: Text("$hex Copiado!"),
-                            behavior: SnackBarBehavior.floating,
-                            width: 400,
-                            action: SnackBarAction(
-                              label: "Fechar",
-                              onPressed: () {},
-                            ),
-                          ),
-                        );
-                      },
-                      icon: Icon(Icons.copy),
+                    child: Tooltip(
+                      key: tooltipKey,
+                      message: mensagem,
+                      child: IconButton(
+                        padding: EdgeInsets.zero,
+                        color: widget.onColor,
+                        onPressed: () async {
+                          setState(() {
+                            mensagem = "Copiado!";
+                          });
+                      
+                          tooltipKey.currentState?.ensureTooltipVisible();
+                      
+                          Future.delayed(Duration(seconds: 2), () {
+                            if (mounted) {
+                              setState(() {
+                                mensagem = "Copiar cor hexadecimal";
+                              });
+                            }
+                          });
+                      
+                          final hex =
+                              '#${_colorChannelToHex(widget.color.r)}'
+                              '${_colorChannelToHex(widget.color.g)}'
+                              '${_colorChannelToHex(widget.color.b)}';
+                      
+                          final data = ClipboardData(text: hex);
+                          await Clipboard.setData(data);
+                        },
+                        icon: Icon(Icons.copy),
+                      ),
                     ),
                   ),
               ],

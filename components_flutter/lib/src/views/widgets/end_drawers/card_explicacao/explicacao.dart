@@ -1,6 +1,8 @@
+import 'package:components_flutter/src/providers/expand_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Explicacao extends StatefulWidget {
+class Explicacao extends ConsumerStatefulWidget {
   const Explicacao({
     super.key,
     required this.componentData,
@@ -11,14 +13,14 @@ class Explicacao extends StatefulWidget {
   final BoxConstraints constraints;
 
   @override
-  State<Explicacao> createState() => _ExplicacaoState();
+  ConsumerState<Explicacao> createState() => _ExplicacaoState();
 }
 
-class _ExplicacaoState extends State<Explicacao> {
-  bool isExpanded = false;
-
+class _ExplicacaoState extends ConsumerState<Explicacao> {
   @override
   Widget build(BuildContext context) {
+    final isExpanded = ref.watch(expandedExplanationProvider);
+    
     return SizedBox(
       width:
           widget.constraints.maxWidth < 800
@@ -34,7 +36,7 @@ class _ExplicacaoState extends State<Explicacao> {
             InkWell(
               onTap: () {
                 setState(() {
-                  isExpanded = !isExpanded;
+                  ref.read(expandedExplanationProvider.notifier).state = !isExpanded;
                 });
               },
               borderRadius: BorderRadius.circular(12),

@@ -1,8 +1,9 @@
-import 'package:components_flutter/src/components_types/components_tips.dart';
+import 'package:components_flutter/src/providers/expand_provider.dart';
 import 'package:components_flutter/src/views/colors_pages/color_box.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ColorsComponents extends StatefulWidget {
+class ColorsComponents extends ConsumerStatefulWidget {
   const ColorsComponents({
     super.key,
     required this.componentData,
@@ -13,14 +14,14 @@ class ColorsComponents extends StatefulWidget {
   final BoxConstraints constraints;
 
   @override
-  State<ColorsComponents> createState() => _ColorsComponentsState();
+  ConsumerState<ColorsComponents> createState() => _ColorsComponentsState();
 }
 
-class _ColorsComponentsState extends State<ColorsComponents> {
-  bool isExpanded = false;
+class _ColorsComponentsState extends ConsumerState<ColorsComponents> {
 
   @override
   Widget build(BuildContext context) {
+    final isExpanded = ref.watch(expandedColorsProvider);
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     bool isLarge = MediaQuery.of(context).size.width > 720;
 
@@ -39,7 +40,7 @@ class _ColorsComponentsState extends State<ColorsComponents> {
             InkWell(
               onTap: () {
                 setState(() {
-                  isExpanded = !isExpanded;
+                  ref.read(expandedColorsProvider.notifier).state = !isExpanded;
                 });
               },
               borderRadius: BorderRadius.circular(12),
@@ -97,56 +98,63 @@ class _ColorsComponentsState extends State<ColorsComponents> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Wrap(
-                          spacing: 15,
-                          runSpacing: 15,
+                          spacing: 10,
+                          runSpacing: 10,
                           alignment: WrapAlignment.center,
                           children: [
                             SizedBox(
                               width: isLarge ? 200 : 300,
                               child: Column(
                                 children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
-                                    child: Image.asset(
-                                      widget.componentData["imgs"][0] ??
-                                          "Sem Informação",
-                                      fit: BoxFit.cover,
+                                  Card.outlined(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(12),
+                                      child: Image.asset(
+                                        widget.componentData["imgs"][0] ??
+                                            "Sem Informação",
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
                             SizedBox(
-                              width: isLarge ? 230 : double.infinity,
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
-                                itemCount: widget.componentData["types"].length,
-                                itemBuilder: (context, index) {
-                                  String key = widget
-                                      .componentData["types"]
-                                      .keys
-                                      .elementAt(index);
-                                  
-                                  Color cor = getColorFromScheme(colorScheme, widget.componentData["types"][key][0]);
-                                  Color onCor = getColorFromScheme(colorScheme, widget.componentData["types"][key][1]);
-
-                                  return Column(
-                                    spacing: 50,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      ColorBox(
-                                        label: "${index + 1} - $key",
-                                        color: cor,
-                                        onColor: onCor,
-                                        height: 95,
-                                        width: 235,
-                                      ),
-                                      
-                                    ],
-                                  );
-                                },
+                              width: isLarge ? 235 : 300,
+                              child: Card.outlined(
+                                elevation: 0,
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: widget.componentData["types"].length,
+                                  itemBuilder: (context, index) {
+                                    String key = widget
+                                        .componentData["types"]
+                                        .keys
+                                        .elementAt(index);
+                                    
+                                    Color cor = getColorFromScheme(colorScheme, widget.componentData["types"][key][0]);
+                                    Color onCor = getColorFromScheme(colorScheme, widget.componentData["types"][key][1]);
+                                
+                                    return Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8),
+                                          child: ColorBox(
+                                            label: "${index + 1} - $key",
+                                            color: cor,
+                                            onColor: onCor,
+                                            height: 95,
+                                            width: isLarge ? 235 : 300,
+                                          ),
+                                        ),
+                                        
+                                      ],
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           ],

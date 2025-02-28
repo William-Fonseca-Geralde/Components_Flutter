@@ -19,8 +19,6 @@ class CardExplicacao extends StatefulWidget {
 }
 
 class _CardExplicacaoState extends State<CardExplicacao> {
-  bool isExpanded = false;
-
   @override
   Widget build(BuildContext context) {
     return Column(

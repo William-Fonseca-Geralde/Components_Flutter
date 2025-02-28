@@ -10,7 +10,7 @@ final Map componentTips = {
           "colors": {
             "imgs": ["assets/imgs/elevatedButtonColor.png"],
             "types": {
-              "Surface Container\nLow": [ "surfaceContainerLow", "onSurface"],
+              "Surface\nContainer Low": [ "surfaceContainerLow", "onSurface"],
               "Primary": ["primary", "onPrimary"],
             },
           },
@@ -120,7 +120,7 @@ FilledButton(
           "subtitle":
               'Os filleds tonal buttons são um meio termo alternativo entre FilledButtons e os OutlinedButtons. Eles são úteis em contextos onde um botão de prioridade mais baixa requer um pouco mais de ênfase do que um esboço daria, como “Próximo” em um fluxo de integração. Os botões tonais usam o mapeamento de cores secundárias.',
           "colors": {
-            "imgs": ["assets/imgs/filledButtonColor.png"],
+            "imgs": ["assets/imgs/filledTonalButtonColor.png"],
             "types": {
               "Secondary\nContainer": ["secondaryContainer", "onSecondaryContainer"],
               "On Secondary\nContainer": [ "onSecondaryContainer", "secondaryContainer"],
@@ -181,9 +181,13 @@ FilledButton.tonal(
         "explicacao": {
           "subtitle":
               'Os OutlinedButtons são botões de ênfase média. Eles contêm ações que são importantes, mas não são a ação principal em um aplicativo, combinando bem com FilledButtons para indicar uma ação secundária alternativa.',
-          "colors": {"imgs": [], "types": [
-
-            ]
+          "colors": {
+            "imgs": ["assets/imgs/outlinedButtonColor.png"],
+            "types": {
+              "Surface\n(optional)": ["surface", "onSurface"],
+              "Outline": [ "outline", "surface"],
+              "Primary": [ "primary", "onPrimary"],
+            },
           },
         },
         "code": {
@@ -234,9 +238,11 @@ OutlinedButton(
         "explicacao": {
           "subtitle":
               'Os TextButtons são utilizados para as ações de prioridade mais baixa, especialmente quando apresentam múltiplas opções, podendo serem colocados em vários planos de fundo. Até que haja interação com o botão, seu contêiner não estará visível.',
-          "colors": {"imgs": [], "types": [
-
-            ]
+          "colors": {
+            "imgs": ["assets/imgs/textButtonColor.png"],
+            "types": {
+              "Primary": [ "primary", "onPrimary"],
+            },
           },
         },
         "code": {
