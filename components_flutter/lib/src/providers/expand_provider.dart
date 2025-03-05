@@ -5,3 +5,5 @@ final expandedItemsProvider = StateProvider<Map<String, bool>>((ref) => {});
 final expandedExplanationProvider = StateProvider<bool>((ref) => false);
 
 final expandedColorsProvider = StateProvider<bool>((ref) => false);
+
+final pageIdx = StateProvider<int>((ref) => 0);

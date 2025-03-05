@@ -1,3 +1,4 @@
+import 'package:components_flutter/src/providers/expand_provider.dart';
 import 'package:components_flutter/src/views/widgets/drawer_navigation_widget.dart';
 import 'package:components_flutter/src/views/widgets/end_drawers/end_drawer_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,6 @@ class HomePage extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<HomePage> {
   final GlobalKey _menuKey = GlobalKey();
-  int currentPageIdx = 0;
   String selectedComponent = '';
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -41,6 +41,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final currentPageIdx = ref.watch(pageIdx);
     final themeMode = ref.watch(themeProvider);
     final themeNotifier = ref.read(themeProvider.notifier);
     final colorNotifier = ref.read(colorProvider.notifier);
@@ -52,7 +53,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         currentPageIdx: currentPageIdx,
         onPageChanged: (value) {
           setState(() {
-            currentPageIdx = value;
+            ref.read(pageIdx.notifier).state = value;
           });
         },
       ),

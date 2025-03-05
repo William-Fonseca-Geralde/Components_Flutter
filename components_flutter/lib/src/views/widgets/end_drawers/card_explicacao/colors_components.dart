@@ -1,4 +1,5 @@
 import 'package:components_flutter/src/providers/expand_provider.dart';
+import 'package:components_flutter/src/providers/theme_notifier.dart';
 import 'package:components_flutter/src/views/colors_pages/color_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +21,7 @@ class ColorsComponents extends ConsumerStatefulWidget {
 class _ColorsComponentsState extends ConsumerState<ColorsComponents> {
   @override
   Widget build(BuildContext context) {
+    final themeAtual = ref.watch(themeProvider) ? 6 : 5;
     final isExpanded = ref.watch(expandedColorsProvider);
     ColorScheme colorScheme = Theme.of(context).colorScheme;
     bool isLarge = MediaQuery.of(context).size.width > 720;
@@ -165,7 +167,8 @@ class _ColorsComponentsState extends ConsumerState<ColorsComponents> {
                               children: [
                                 FloatingActionButton.extended(
                                   onPressed: () {
-                                    
+                                    Navigator.pop(context);
+                                    ref.read(pageIdx.notifier).state = themeAtual;
                                   },
                                   label: Text("Ir para Cores"),
                                   icon: Icon(Icons.color_lens_outlined),
