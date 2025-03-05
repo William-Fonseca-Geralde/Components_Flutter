@@ -1,5 +1,5 @@
 import 'package:components_flutter/src/components_types/components_tips.dart';
-import 'package:components_flutter/src/views/widgets/end_drawers/card_explicacao.dart';
+import 'package:components_flutter/src/views/widgets/end_drawers/card_explicacao/card_explicacao.dart';
 import 'package:components_flutter/src/views/widgets/end_drawers/dart_implementacao.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

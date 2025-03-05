@@ -38,7 +38,7 @@ class _ColorBoxState extends State<ColorBox> {
       child: SizedBox(
         height: widget.height,
         width: widget.width,
-        child: Card(
+        child: Card.outlined(
           color: widget.color,
           elevation: 0,
           margin: EdgeInsets.zero,

@@ -18,7 +18,6 @@ class ColorsComponents extends ConsumerStatefulWidget {
 }
 
 class _ColorsComponentsState extends ConsumerState<ColorsComponents> {
-
   @override
   Widget build(BuildContext context) {
     final isExpanded = ref.watch(expandedColorsProvider);
@@ -84,16 +83,14 @@ class _ColorsComponentsState extends ConsumerState<ColorsComponents> {
             ),
             AnimatedContainer(
               duration: Duration(milliseconds: 250),
-              height: isExpanded ? (isLarge ? 260 : 430) : 0,
+              height: isExpanded ? (isLarge ? 320 : 500) : 0,
               child: Container(
                 constraints: BoxConstraints.expand(),
                 child: Card(
                   color: Theme.of(context).colorScheme.surface,
                   elevation: 0,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
                     child: SingleChildScrollView(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -126,16 +123,23 @@ class _ColorsComponentsState extends ConsumerState<ColorsComponents> {
                                 child: ListView.builder(
                                   shrinkWrap: true,
                                   physics: NeverScrollableScrollPhysics(),
-                                  itemCount: widget.componentData["types"].length,
+                                  itemCount:
+                                      widget.componentData["types"].length,
                                   itemBuilder: (context, index) {
                                     String key = widget
                                         .componentData["types"]
                                         .keys
                                         .elementAt(index);
-                                    
-                                    Color cor = getColorFromScheme(colorScheme, widget.componentData["types"][key][0]);
-                                    Color onCor = getColorFromScheme(colorScheme, widget.componentData["types"][key][1]);
-                                
+
+                                    Color cor = getColorFromScheme(
+                                      colorScheme,
+                                      widget.componentData["types"][key][0],
+                                    );
+                                    Color onCor = getColorFromScheme(
+                                      colorScheme,
+                                      widget.componentData["types"][key][1],
+                                    );
+
                                     return Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
@@ -150,12 +154,23 @@ class _ColorsComponentsState extends ConsumerState<ColorsComponents> {
                                             width: isLarge ? 235 : 300,
                                           ),
                                         ),
-                                        
                                       ],
                                     );
                                   },
                                 ),
                               ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FloatingActionButton.extended(
+                                  onPressed: () {
+                                    
+                                  },
+                                  label: Text("Ir para Cores"),
+                                  icon: Icon(Icons.color_lens_outlined),
+                                ),
+                              ],
                             ),
                           ],
                         ),
